@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="80dp"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="1.0px"
+        android:layout_alignParentTop="true"
+        android:background="@color/border_gray" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@android:color/white"
+        android:paddingLeft="5.0dip"
+        android:paddingRight="8.0dip"
+        android:paddingTop="8.0dip">
+
+        <ImageView
+            android:id="@id/img_child_sound_head"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="8.0dip"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@id/txt_child_album_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/img_child_sound_head"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="专辑名"
+            android:textSize="15sp"
+            android:textColor="@color/black" />
+        <TextView
+            android:id="@+id/txt_child_album_recreason"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/img_child_sound_head"
+            android:layout_below="@id/txt_child_album_name"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="根据什么推荐"
+            android:textSize="13sp"
+            android:layout_marginTop="4.0dip"
+            android:textColor="@color/normal_gray" />
+
+        <TextView
+            android:id="@id/txt_playtimes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/img_child_sound_head"
+            android:layout_below="@id/txt_child_album_recreason"
+            android:layout_marginTop="4.0dip"
+            android:drawableLeft="@drawable/bg_myitem_playtimes_new"
+            android:drawablePadding="2.0dip"
+            android:textColor="@color/light_gray"
+            android:text="78.1万"
+            android:textSize="11.0sp" />
+        <TextView
+            android:id="@+id/txt_tracks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/txt_playtimes"
+            android:layout_below="@id/txt_child_album_recreason"
+            android:layout_marginTop="4.0dip"
+            android:drawableLeft="@drawable/album_collect_count"
+            android:drawablePadding="2.0dip"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/light_gray"
+            android:text="135集"
+            android:textSize="11.0sp" />
+
+        <ImageView
+            android:id="@id/btn_collect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10.0dip"
+            android:background="@drawable/btn_collect_new" />
+    </RelativeLayout>
+</LinearLayout>

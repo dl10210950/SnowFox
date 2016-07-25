@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@id/main_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/bg_color">
+    <FrameLayout
+        android:id="@id/main_framelayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/main_radiogroup_title"/>
+
+
+    <RadioGroup
+        android:id="@id/main_radiogroup_title"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/title_bar_height"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingTop="0.0dip">
+
+        <RadioButton
+            android:id="@id/main_radiobutton_find"
+            style="@style/MainTabStyle"
+            android:drawableTop="@drawable/tab1_selector"
+            android:text="发现" />
+
+        <RadioButton
+            android:id="@id/main_radiobutton_custom"
+            style="@style/MainTabStyle"
+            android:drawableTop="@drawable/tab2_selector"
+            android:text="订阅听" />
+
+        <RadioButton
+            android:id="@id/main_radiobutton_play"
+            style="@style/MainTabStyle"
+            android:text="" />
+
+
+        <RadioButton
+            android:id="@id/main_radiobutton_download"
+            style="@style/MainTabStyle"
+            android:drawableTop="@drawable/tab3_selector"
+            android:text="下载听" />
+
+        <RadioButton
+            android:id="@id/main_radiobutton_myspace"
+            style="@style/MainTabStyle"
+            android:drawableTop="@drawable/tab4_selector"
+            android:text="我的" />
+    </RadioGroup>
+    <ImageButton
+        android:id="@id/main_imagebutton_playing"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="4dip"
+        android:background="@drawable/play_icon_pause"/>
+
+
+</RelativeLayout>

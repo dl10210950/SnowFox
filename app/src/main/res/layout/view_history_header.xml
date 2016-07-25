@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@id/download_action"
+    android:layout_width="fill_parent"
+    android:layout_height="50.0dip">
+
+    <TextView
+        android:id="@id/action_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:clickable="true"
+        android:drawableLeft="@drawable/btn_garbage_selector"
+        android:drawablePadding="@dimen/size_20px"
+        android:text="清空历史"
+        android:textColor="@drawable/text_selector"
+        android:textSize="@dimen/text_size_16" />
+</RelativeLayout>
