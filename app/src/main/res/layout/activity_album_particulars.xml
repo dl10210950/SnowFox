@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.sdn.snowfox.activity.activity.AlbumParticulars">
+
+    <RelativeLayout
+        android:id="@+id/album_particulars_relativelayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dip">
+
+        <ImageButton
+            android:id="@+id/album_particulars_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/btn_back_orange" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="专辑详情"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <ImageButton
+            android:id="@+id/album_particulars_shared"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@+id/album_particulars_more"
+            android:background="@color/white"
+            android:src="@drawable/ic_share_pressed" />
+
+        <ImageButton
+            android:id="@+id/album_particulars_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:background="@color/white"
+            android:src="@drawable/album_edit_more" />
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/album_particulars_relative"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        >
+
+        <ImageView
+            android:id="@+id/album_particulars_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:src="@drawable/children_unchecked" />
+
+        <TextView
+            android:id="@+id/album_particulars_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@+id/album_particulars_image"
+            android:text="这是标题"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/album_particulars_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/album_particulars_title"
+            android:layout_marginTop="4dp"
+            android:layout_toRightOf="@+id/album_particulars_image"
+            android:text="主播：上官你爸"
+            android:textColor="@color/blue"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/album_particulars_playcounts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/album_particulars_name"
+            android:layout_marginTop="4dp"
+            android:layout_toRightOf="@+id/album_particulars_image"
+            android:text="播放：100万次"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/album_particulars_classify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/album_particulars_playcounts"
+            android:layout_marginTop="4dp"
+            android:layout_toRightOf="@+id/album_particulars_image"
+            android:text="分类：教育培训"
+            android:textColor="@color/blue"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:id="@+id/album_particulars_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/album_particulars_image"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@id/ll_subscribe_album"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20.0dip"
+                android:layout_marginRight="10.0dip"
+                android:layout_weight="1.0"
+                android:background="@drawable/album_particulars__shape"
+                android:gravity="center"
+                android:minHeight="34.0dip"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@id/image_subscribe_album"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5.0dip"
+                    android:src="@drawable/image_subscribe" />
+
+                <TextView
+                    android:id="@id/tv_subscribe_album"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="订阅专辑"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@id/ll_batch_album"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10.0dip"
+                android:layout_marginRight="20.0dip"
+                android:layout_weight="1.0"
+                android:background="@drawable/album_particulars__shape"
+                android:gravity="center"
+                android:minHeight="34.0dip"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@id/image_batch_album"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5.0dip"
+                    android:src="@drawable/image_batch_download" />
+
+                <TextView
+                    android:id="@id/tv_batch_album"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="批量下载"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/album_particulars_view"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_below="@+id/album_particulars_linear"
+            android:layout_marginTop="20sp"
+            android:background="@color/light_gray" />
+
+
+    </RelativeLayout>
+
+    <RadioGroup
+        android:id="@+id/album_particulars_radiogroup"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/album_particulars_relative"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@drawable/custom_selector"
+            android:button="@null"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:text="详情"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/custom_selector"
+            android:text="节目(200)"
+            android:button="@null"
+            android:textSize="18sp" />
+
+    </RadioGroup>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/album_particulars_viewpager"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/album_particulars_radiogroup"
+        android:layout_height="match_parent"/>
+</RelativeLayout>
+    </ScrollView>
+</LinearLayout>

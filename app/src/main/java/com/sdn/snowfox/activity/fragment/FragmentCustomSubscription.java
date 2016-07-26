@@ -3,20 +3,36 @@ package com.sdn.snowfox.activity.fragment;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import com.sdn.snowfox.R;
 import com.sdn.snowfox.activity.activity.RegisterActivity;
+import com.sdn.snowfox.activity.adapter.MyCustomSubscriptionListViewAdapter;
+import com.sdn.snowfox.activity.utils.Constants;
 
 /**
- * 发现页面的Fregment
+ * 订阅听里面的订阅页面的Fregment
  */
 public class FragmentCustomSubscription extends BaseFragment {
-
-
+    private LinearLayout linearLayout;
+    private ListView listView;
+    private MyCustomSubscriptionListViewAdapter adapter;
     @Override
     public View initView() {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.fragment_custom_subscription, null);
+        linearLayout = (LinearLayout) view.findViewById(R.id.custom_subscription_linearlayout);
+        listView = (ListView) view.findViewById(R.id.custom_subscription_listview);
+        if (Constants.ALBUMLIST != null) {
+            linearLayout.setVisibility(View.GONE);
+            listView.setVisibility(View.VISIBLE);
+            adapter = new MyCustomSubscriptionListViewAdapter(getContext(),Constants.ALBUMLIST);
+            listView.setAdapter(adapter);
+        } else {
+            linearLayout.setVisibility(View.VISIBLE);
+            listView.setVisibility(View.GONE);
+        }
 
         setOnClickListener(view);
 

@@ -6,7 +6,7 @@
     <string name="pull_to_refresh_from_bottom_pull_label">@string/pull_to_refresh_pull_label</string>
     <string name="pull_to_refresh_from_bottom_refreshing_label">@string/pull_to_refresh_refreshing_label</string>
     <string name="pull_to_refresh_from_bottom_release_label">@string/pull_to_refresh_release_label</string>
-    <string name="app_name">雪狐听书</string>
+    <string name="app_name">雪狐FM</string>
     <string name="clear_history">清空历史</string>
     <string name="about">关于</string>
     <string name="account_bind">账号绑定</string>
