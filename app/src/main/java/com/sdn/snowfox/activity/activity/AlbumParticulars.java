@@ -21,6 +21,7 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.sdn.snowfox.R;
 import com.sdn.snowfox.activity.adapter.MyAlbumFragmentPagerAdapter;
+import com.sdn.snowfox.activity.adapter.MyAlbumProgramListViewAdapter;
 import com.sdn.snowfox.activity.bean.AlbumParticularsBean;
 import com.sdn.snowfox.activity.fragment.BaseFragment;
 import com.sdn.snowfox.activity.fragment.FragmentAlbumProgram;
@@ -44,9 +45,9 @@ public class AlbumParticulars extends FragmentActivity {
     private TextView togetherDown;//批量下载
     private ImageView imgAlbum;//专辑封面
     private TextView tvTitle;//专辑名字
-    private  TextView tvName;//专辑主播
+    private TextView tvName;//专辑主播
     private TextView tvPlayCount;//播放次数
-    private  TextView tvClassify;//专辑分类
+    private TextView tvClassify;//专辑分类
     private AlbumParticularsBean albumParticularsBean;
     private String path;//接口地址
     private String albumId;//专辑id，通过专辑id拼接网址
@@ -65,7 +66,7 @@ public class AlbumParticulars extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_album_particulars);
         albumId = getIntent().getStringExtra("albumId");
-        path = Constants.ALBUMPARTICULARS + albumId;
+        path = Constants.ALBUMPARTICULARS + albumId+"&device=android&isAsc=true&pageId=1&pageSize=40";
         getData(path);//请求数据
         initView();//初始化控件
         setOnListener();//给控件设置监听
@@ -82,7 +83,7 @@ public class AlbumParticulars extends FragmentActivity {
 
         //标题
         tvTitle = (TextView) findViewById(R.id.album_particulars_title);
-       //主播名字
+        //主播名字
         tvName = (TextView) findViewById(R.id.album_particulars_name);
         //播放次数
         tvPlayCount = (TextView) findViewById(R.id.album_particulars_playcounts);
@@ -97,7 +98,7 @@ public class AlbumParticulars extends FragmentActivity {
         FragmentAlbumProgram albumProgram = new FragmentAlbumProgram();
         list.add(albumPurticulars);
         list.add(albumProgram);
-        pagerAdapter = new MyAlbumFragmentPagerAdapter(getSupportFragmentManager(),list);
+        pagerAdapter = new MyAlbumFragmentPagerAdapter(getSupportFragmentManager(), list);
         mViewPager.setAdapter(pagerAdapter);
 
         mRadioGroup = (RadioGroup) findViewById(R.id.album_particulars_radiogroup);
@@ -176,8 +177,11 @@ public class AlbumParticulars extends FragmentActivity {
                         Gson gson = new Gson();
                         //拿到解析完的数据
                         albumParticularsBean = gson.fromJson(httpResult, AlbumParticularsBean.class);
-                        //添加到全局变量
-                        Constants.PROGRAMLIST.add(albumParticularsBean);
+                        List<AlbumParticularsBean.DataBean.TracksBean.ListBean> list = albumParticularsBean.getData().getTracks().getList();
+                        if (list != null) {
+                            dataChanged.setOnDataChanged(list);
+                        }
+
                         Glide.with(AlbumParticulars.this).load(albumParticularsBean.getData().getAlbum().getCoverMiddle()).into(imgAlbum);
                         title = albumParticularsBean.getData().getAlbum().getTitle();
                         tvTitle.setText(title);
@@ -187,7 +191,7 @@ public class AlbumParticulars extends FragmentActivity {
                         tvClassify.setText("分类：" + albumParticularsBean.getData().getAlbum().getCategoryName().toString());
                         //用来拼接网址
                         uid = albumParticularsBean.getData().getAlbum().getUid() + "";
-                        proRadioBtn.setText("节目（"+albumParticularsBean.getData().getAlbum().getTracks()+"）");
+                        proRadioBtn.setText("节目（" + albumParticularsBean.getData().getAlbum().getTracks() + "）");
 
                     }
 
@@ -230,4 +234,13 @@ public class AlbumParticulars extends FragmentActivity {
         oks.show(this);
     }
 
+    DataChanged dataChanged;
+
+    public void setDataChanged(DataChanged dataChanged) {
+        this.dataChanged = dataChanged;
+    }
+
+    public interface DataChanged {
+        void setOnDataChanged(List<AlbumParticularsBean.DataBean.TracksBean.ListBean> mlist);
+    }
 }

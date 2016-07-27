@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="80dp"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="1.0px"
+        android:layout_alignParentTop="true"
+        android:background="@color/border_gray" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@android:color/white"
+        android:paddingLeft="5.0dip"
+        android:paddingRight="8.0dip"
+        android:paddingTop="8.0dip">
+
+        <ImageView
+            android:id="@+id/album_program_play"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="5dp"
+            android:layout_marginRight="8.0dip"
+            android:scaleType="centerCrop"
+            android:src="@drawable/player_toolbar_play_normal" />
+
+        <TextView
+            android:id="@id/txt_child_album_name"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/album_program_play"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="专辑节目的名字"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+
+        <TextView
+            android:id="@+id/album_program_playtimes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_child_album_name"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="11.0dip"
+            android:layout_toRightOf="@id/album_program_play"
+            android:drawableLeft="@drawable/bg_myitem_playtimes_new"
+            android:drawablePadding="2.0dip"
+            android:text="播放次数"
+            android:textColor="@color/light_gray"
+            android:textSize="11.0sp" />
+
+        <TextView
+            android:id="@+id/album_program_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_child_album_name"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="11.0dip"
+            android:layout_toRightOf="@+id/album_program_playtimes"
+            android:drawableLeft="@drawable/ic_item_duration"
+            android:drawablePadding="2.0dip"
+            android:text="时长"
+            android:textColor="@color/light_gray"
+            android:textSize="11.0sp" />
+
+        <TextView
+            android:id="@+id/album_program_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_child_album_name"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="11.0dip"
+            android:layout_toRightOf="@+id/album_program_duration"
+            android:drawableLeft="@drawable/tag_comment"
+            android:drawablePadding="2.0dip"
+            android:text="评论多少"
+            android:textColor="@color/light_gray"
+            android:textSize="11.0sp" />
+
+
+        <ImageView
+            android:id="@+id/albun_program_download"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10.0dip"
+            android:background="@drawable/album_program_download_selector" />
+    </RelativeLayout>
+</LinearLayout>

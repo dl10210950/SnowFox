@@ -230,7 +230,7 @@
         android:layout_width="match_parent"
         android:background="@color/yellow_color"
         android:layout_below="@+id/album_particulars_radiogroup"
-        android:layout_height="9999dp"/>
+        android:layout_height="2222dp"/>
 </RelativeLayout>
     </ScrollView>
 </LinearLayout>

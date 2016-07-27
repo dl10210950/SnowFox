@@ -21,6 +21,7 @@ public class Constants {
      * 点击推荐里面的item按钮后跳转到详情页面的接口需要拼接albumId
      */
     public static String ALBUMPARTICULARS = "http://mobile.ximalaya.com/mobile/v1/album?albumId=";
+    //mobile.ximalaya.com/mobile/v1/album?albumId=3041761&device=android&isAsc=true&pageId=1&pageSize=40
     /**
      * 用于推荐专辑页面点击订阅按钮后把信息赋值给全局变量，在订阅的fragment里面就能用
      */
@@ -28,5 +29,5 @@ public class Constants {
     /**
      * 用来把专辑详情里的数据赋值给全局变量，在专辑详情的节目fragment里面需要用到
      */
-    public static List<AlbumParticularsBean> PROGRAMLIST = new ArrayList<>();
+    public static List<AlbumParticularsBean.DataBean.TracksBean.ListBean> PROGRAMLIST = new ArrayList<>();
 }
