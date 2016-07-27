@@ -1,13 +1,14 @@
 package com.sdn.snowfox.activity.activity;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,9 +20,11 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.sdn.snowfox.R;
-import com.sdn.snowfox.activity.adapter.MyCustomRecommendListViewAdapter;
+import com.sdn.snowfox.activity.adapter.MyAlbumFragmentPagerAdapter;
 import com.sdn.snowfox.activity.bean.AlbumParticularsBean;
-import com.sdn.snowfox.activity.bean.RecommendAlbum;
+import com.sdn.snowfox.activity.fragment.BaseFragment;
+import com.sdn.snowfox.activity.fragment.FragmentAlbumProgram;
+import com.sdn.snowfox.activity.fragment.FragmentAlbumPurticulars;
 import com.sdn.snowfox.activity.utils.Constants;
 
 import java.util.ArrayList;
@@ -33,7 +36,7 @@ import cn.sharesdk.onekeyshare.OnekeyShare;
 /**
  * 专辑详情页面
  */
-public class AlbumParticulars extends Activity {
+public class AlbumParticulars extends FragmentActivity {
     private ImageButton back;//返回按钮
     private ImageButton shared;//分享按钮
     private ImageButton more;//。。。按钮
@@ -45,12 +48,17 @@ public class AlbumParticulars extends Activity {
     private TextView tvPlayCount;//播放次数
     private  TextView tvClassify;//专辑分类
     private AlbumParticularsBean albumParticularsBean;
-    private String path;
-    private String albumId;
-    private String uid;
+    private String path;//接口地址
+    private String albumId;//专辑id，通过专辑id拼接网址
+    private String uid;//也是拼接网址的数据
     private String title;//要显示的标题
     private String nickname;//
     private ViewPager mViewPager;
+    private MyAlbumFragmentPagerAdapter pagerAdapter;
+    private List<BaseFragment> list;//装fragment的集合
+    private RadioGroup mRadioGroup;
+    private RadioButton parRadioBtn;//详情按钮
+    private RadioButton proRadioBtn;//节目按钮
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +66,9 @@ public class AlbumParticulars extends Activity {
         setContentView(R.layout.activity_album_particulars);
         albumId = getIntent().getStringExtra("albumId");
         path = Constants.ALBUMPARTICULARS + albumId;
-        getData(path);
-        initView();
-        setOnListener();
+        getData(path);//请求数据
+        initView();//初始化控件
+        setOnListener();//给控件设置监听
 
     }
 
@@ -69,21 +77,35 @@ public class AlbumParticulars extends Activity {
      */
     private void initView() {
         back = (ImageButton) findViewById(R.id.album_particulars_back);
-//        //专辑图片
+        //专辑图片
         imgAlbum = (ImageView) findViewById(R.id.album_particulars_image);
 
-//        //标题
+        //标题
         tvTitle = (TextView) findViewById(R.id.album_particulars_title);
-//        //主播名字
+       //主播名字
         tvName = (TextView) findViewById(R.id.album_particulars_name);
-//        //播放次数
+        //播放次数
         tvPlayCount = (TextView) findViewById(R.id.album_particulars_playcounts);
-//        //分类
+        //分类
         tvClassify = (TextView) findViewById(R.id.album_particulars_classify);
-//
+        //分享按钮
         shared = (ImageButton) findViewById(R.id.album_particulars_shared);
         mViewPager = (ViewPager) findViewById(R.id.album_particulars_viewpager);
+        list = new ArrayList<>();
+        //详情和节目的fragment
+        FragmentAlbumPurticulars albumPurticulars = new FragmentAlbumPurticulars();
+        FragmentAlbumProgram albumProgram = new FragmentAlbumProgram();
+        list.add(albumPurticulars);
+        list.add(albumProgram);
+        pagerAdapter = new MyAlbumFragmentPagerAdapter(getSupportFragmentManager(),list);
+        mViewPager.setAdapter(pagerAdapter);
 
+        mRadioGroup = (RadioGroup) findViewById(R.id.album_particulars_radiogroup);
+        parRadioBtn = (RadioButton) findViewById(R.id.album_particulars_radiobutton_par);
+        proRadioBtn = (RadioButton) findViewById(R.id.album_particulars_radiobutton_program);
+        //默认页面
+        mViewPager.setCurrentItem(1);
+        proRadioBtn.setChecked(true);
     }
 
     /**
@@ -97,10 +119,47 @@ public class AlbumParticulars extends Activity {
                 finish();
             }
         });
+        //分享按钮的监听事件
         shared.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showShare();
+            }
+        });
+        //详情和节目的监听
+        mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int isChecked) {
+                switch (isChecked) {
+                    case R.id.album_particulars_radiobutton_par://详情
+                        mViewPager.setCurrentItem(0);//让ViewPager显示第0页也就是详情的fragment
+                        break;
+                    case R.id.album_particulars_radiobutton_program://节目
+                        mViewPager.setCurrentItem(1);
+                        break;
+                }
+            }
+        });
+        //viewPager的监听事件
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (position == 0) {
+                    parRadioBtn.setChecked(true);//让详情按钮处于选中状态
+                } else {
+                    proRadioBtn.setChecked(true);//让节目按钮处于选中状态
+
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
             }
         });
     }
@@ -115,7 +174,10 @@ public class AlbumParticulars extends Activity {
                     public void onSuccess(ResponseInfo<String> arg0) {
                         String httpResult = arg0.result;//拿到请求回来的数据
                         Gson gson = new Gson();
+                        //拿到解析完的数据
                         albumParticularsBean = gson.fromJson(httpResult, AlbumParticularsBean.class);
+                        //添加到全局变量
+                        Constants.PROGRAMLIST.add(albumParticularsBean);
                         Glide.with(AlbumParticulars.this).load(albumParticularsBean.getData().getAlbum().getCoverMiddle()).into(imgAlbum);
                         title = albumParticularsBean.getData().getAlbum().getTitle();
                         tvTitle.setText(title);
@@ -123,7 +185,9 @@ public class AlbumParticulars extends Activity {
                         tvName.setText("主播：" + nickname);
                         tvPlayCount.setText("播放：" + albumParticularsBean.getData().getAlbum().getPlayTimes() / 10000 + "万次");
                         tvClassify.setText("分类：" + albumParticularsBean.getData().getAlbum().getCategoryName().toString());
+                        //用来拼接网址
                         uid = albumParticularsBean.getData().getAlbum().getUid() + "";
+                        proRadioBtn.setText("节目（"+albumParticularsBean.getData().getAlbum().getTracks()+"）");
 
                     }
 

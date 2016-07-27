@@ -36,6 +36,7 @@ public class FragmentCustomRecommend extends BaseFragment {
     @Override
 
     public View initView() {
+
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.fragment_custom_recommend, null);
         mListView = (ListView) view.findViewById(R.id.custom_recommend_listview);

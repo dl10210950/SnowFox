@@ -2,16 +2,16 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_checked="false">
         <shape>
-            <corners android:radius="100.0dip" />
-            <solid android:color="#ffd9dfe5" />
+            <corners android:radius="200.0dip" />
+            <solid android:color="@color/newregister_lable" />
         </shape>
     </item>
 
     <item android:state_checked="true">
 
         <shape>
-            <corners android:radius="100.0dip" />
-            <solid android:color="#fff86442" />
+            <corners android:radius="200.0dip" />
+            <solid android:color="@color/background_tab_pressed" />
         </shape>
     </item>
 

@@ -35,6 +35,10 @@ public class MyCustomRecommendListViewAdapter extends BaseAdapter {
     public MyCustomRecommendListViewAdapter(FragmentActivity activity,List<RecommendAlbum.DataBean.ListBean> list ) {
         this.context = activity;
         this.mlist = list;
+        if (Constants.ALBUMLIST!=null) {
+            Constants.ALBUMLIST.clear();
+        }
+
     }
 
 

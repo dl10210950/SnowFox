@@ -85,5 +85,8 @@ public class MyCustomSubscriptionListViewAdapter extends BaseAdapter {
         ImageButton recCB;
 
     }
+    public  void setList(List<Map<String, Object>> list){
+        this.list = list;
+    }
 
 }

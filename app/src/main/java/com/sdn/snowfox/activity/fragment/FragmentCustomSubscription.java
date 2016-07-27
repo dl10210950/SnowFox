@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.sdn.snowfox.R;
 import com.sdn.snowfox.activity.activity.RegisterActivity;
@@ -24,10 +25,13 @@ public class FragmentCustomSubscription extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_custom_subscription, null);
         linearLayout = (LinearLayout) view.findViewById(R.id.custom_subscription_linearlayout);
         listView = (ListView) view.findViewById(R.id.custom_subscription_listview);
-        if (Constants.ALBUMLIST != null) {
+
+        if (Constants.ALBUMLIST .size()>0) {
             linearLayout.setVisibility(View.GONE);
             listView.setVisibility(View.VISIBLE);
+            Toast.makeText(getContext(), Constants.ALBUMLIST .size()+"", Toast.LENGTH_SHORT).show();
             adapter = new MyCustomSubscriptionListViewAdapter(getContext(),Constants.ALBUMLIST);
+            adapter.setList(Constants.ALBUMLIST);
             listView.setAdapter(adapter);
         } else {
             linearLayout.setVisibility(View.VISIBLE);
@@ -52,7 +56,7 @@ public class FragmentCustomSubscription extends BaseFragment {
 
             }
         });
-        //登陆已有账号的监听事件
+        //登陆已有账号按钮的监听事件
         view.findViewById(R.id.custom_subscription_login).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
